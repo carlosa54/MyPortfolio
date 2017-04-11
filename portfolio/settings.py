@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     #My apps
     'apps.projects',
     'apps.api',
+    'apps.skills',
 
     #Third party
     'django_extensions',
