@@ -18,6 +18,5 @@ class Skill(models.Model):
 	name = models.CharField(max_length=50)
 	description = models.TextField(blank=True,null=True)
 	level = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
-	project = models.ManyToManyField(Project)
 	skill_type = models.CharField(choices=SKILL_TYPE_CHOICES, max_length=2)
 

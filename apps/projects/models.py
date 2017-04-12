@@ -30,16 +30,12 @@ class Project(models.Model):
 
 def image_upload_to(instance, filename):
 	''' This function formats the filename of the images of ProjectImage '''
-	title = instance.project.title
-	slug = slugify(title)
-	# Takes the second element of the list returned by the split function
-	file_extension = filename.split(".")[1] 
-	new_filename = "%s.%s" %(instance.id, file_extension)
-	return "projects/%s/%s" %(slug, new_filename)
+	slug = slugify(instance.project.pk)
+	return "projects/%s/%s" %(slug, filename)
 
 class ProjectImage(models.Model):
-	project = models.ForeignKey(Project)
+	project = models.ForeignKey(Project, related_name="images")
 	image = models.ImageField(upload_to=image_upload_to)
 
 	def __unicode__(self):
-		return self.project.title
+		return self.image.url
