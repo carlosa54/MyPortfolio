@@ -26,7 +26,7 @@ SECRET_KEY = 'lfkjk5i0=c(@s#63($h-m^zg@6d_zkmxss+w)^$bgrosa7@zkh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS') if os.getenv('ALLOWED_HOSTS') else []
 
 
 # Application definition
@@ -94,18 +94,6 @@ DATABASES = {
 }
 
 DATABASES['default'] = dj_database_url.config(conn_max_age=600)
-
-if 'RDS_HOSTNAME' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.environ['RDS_DB_NAME'],
-            'USER': os.environ['RDS_USERNAME'],
-            'PASSWORD': os.environ['RDS_PASSWORD'],
-            'HOST': os.environ['RDS_HOSTNAME'],
-            'PORT': os.environ['RDS_PORT'],
-        }
-    }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
