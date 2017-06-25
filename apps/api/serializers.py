@@ -10,7 +10,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 		fields = '__all__'
 
 	def get_image(self, obj):
-		return obj.images.first().image.url
+		return self.context['request'].build_absolute_uri(obj.images.first().image.url)
 
 class ProjectDetailSerializer(serializers.ModelSerializer):
 	images = serializers.StringRelatedField(many=True)

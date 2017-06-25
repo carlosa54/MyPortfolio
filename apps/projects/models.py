@@ -21,7 +21,7 @@ class Project(models.Model):
 	title = models.CharField(max_length=50)
 	description = models.TextField()
 	url = models.URLField(blank=True, null=True)
-	work = models.OneToOneField(Work, on_delete=models.CASCADE, primary_key=True,)
+	work = models.ForeignKey(Work, null=True, blank=True)
 	personal = models.BooleanField(default=False)
 
 	def __unicode__(self):
