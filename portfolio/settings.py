@@ -26,7 +26,7 @@ SECRET_KEY = 'lfkjk5i0=c(@s#63($h-m^zg@6d_zkmxss+w)^$bgrosa7@zkh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS') if os.getenv('ALLOWED_HOSTS') else []
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',') if os.getenv('ALLOWED_HOSTS') else []
 
 
 # Application definition
