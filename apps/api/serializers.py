@@ -24,6 +24,11 @@ class WorkSerializer(serializers.ModelSerializer):
 		fields = '__all__'
 
 class SkillSerializer(serializers.ModelSerializer):
+	skill_type = serializers.SerializerMethodField()
+
 	class Meta:
 		model = Skill
 		fields = '__all__'
+
+	def get_skill_type(self,obj):
+		return obj.get_skill_type_display()

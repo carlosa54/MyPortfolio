@@ -22,7 +22,7 @@ class WorkListAPIView(generics.ListAPIView):
 	queryset = Work.objects.all()
 	serializer_class = WorkSerializer
 	filter_backends = [filters.SearchFilter, filters.OrderingFilter]
-	ordering_fields = ["name", "pk"]
+	ordering_fields = ["name", "pk", "from_date"]
 
 class WorkRetrieveAPIView(generics.RetrieveAPIView):
 	queryset = Work.objects.all()

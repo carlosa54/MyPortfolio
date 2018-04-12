@@ -4,10 +4,16 @@ from django.utils.text import slugify
 
 from django.db import models
 
-# Create your models here.
+def logo_upload_to(instance, filename):
+	''' This function formats the filename of the Work logos'''
+	slug = slugify(instance.pk)
+	return "works/%s/%s" %(slug, filename)
+
 class Work(models.Model):
 	name = models.CharField(max_length=50)
+	logo = models.ImageField(upload_to=logo_upload_to,blank=True,null=True)
 	position = models.CharField(max_length=50)
+	description = models.TextField(null=True, blank=True)
 	from_date = models.DateField(null=False)
 	to_date = models.DateField(null=True, blank=True)
 	longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
@@ -21,6 +27,7 @@ class Project(models.Model):
 	title = models.CharField(max_length=50)
 	description = models.TextField()
 	url = models.URLField(blank=True, null=True)
+	github_url = models.URLField(blank=True, null=True)
 	work = models.ForeignKey(Work, null=True, blank=True)
 	personal = models.BooleanField(default=False)
 
