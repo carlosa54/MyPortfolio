@@ -28,7 +28,7 @@ class Project(models.Model):
 	description = models.TextField()
 	url = models.URLField(blank=True, null=True)
 	github_url = models.URLField(blank=True, null=True)
-	work = models.ForeignKey(Work, null=True, blank=True)
+	work = models.ForeignKey(Work, on_delete=models.SET_NULL, null=True, blank=True)
 	personal = models.BooleanField(default=False)
 
 	def __unicode__(self):
@@ -41,7 +41,7 @@ def image_upload_to(instance, filename):
 	return "projects/%s/%s" %(slug, filename)
 
 class ProjectImage(models.Model):
-	project = models.ForeignKey(Project, related_name="images")
+	project = models.ForeignKey(Project, on_delete=models.PROTECT, related_name="images")
 	image = models.ImageField(upload_to=image_upload_to)
 
 	def __unicode__(self):
