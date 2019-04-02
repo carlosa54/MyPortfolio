@@ -1,3 +1,3 @@
-Portfolio API
+# Portfolio API
 
-TODO: Add description
+### REST API developed with Django used by portfolio-frontend project
